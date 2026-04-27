@@ -3,14 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Winkelwerk">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#2b2b2b">
-  <meta name="color-scheme" content="light dark">
-  <title>Winkelwerk</title>
-  <link rel="icon" type="image/png" href="winkelwerlk.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#101114">
+  <title>Winkelwerk Admin</title>
+  <link rel="icon" type="image/png" href="../winkelwerlk.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
 
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
@@ -21,671 +18,416 @@
 
   <style>
     :root {
-      color-scheme: light;
-      --page-bg: #ffffff;
-      --text-color: #1f1f1f;
-      --menu-icon-bg: rgba(0, 0, 0, 0.7);
-      --menu-icon-color: #ffffff;
-      --nav-bg: rgba(0, 0, 0, 0.95);
-      --nav-link-color: #ffffff;
-      --nav-border: rgba(255, 255, 255, 0.1);
-      --nav-muted: rgba(255, 255, 255, 0.68);
-      --toggle-bg: rgba(255, 255, 255, 0.88);
-      --toggle-color: #161616;
-      --toggle-border: rgba(0, 0, 0, 0.08);
-      --btn-bg: #ff4d4d;
-      --btn-bg-hover: #ef3e3e;
-      --card-bg: #ffffff;
-      --card-text: #1f1f1f;
-      --card-shadow: rgba(0, 0, 0, 0.1);
+      color-scheme: dark light;
+      --bg: #f7f4ef;
+      --panel: rgba(255, 255, 255, 0.9);
+      --panel-strong: #ffffff;
+      --text: #181818;
+      --muted: #6f6a63;
+      --border: rgba(0, 0, 0, 0.08);
+      --accent: #ff4d4d;
+      --accent-hover: #ea3c3c;
+      --shadow: rgba(0, 0, 0, 0.14);
       --field-bg: #ffffff;
-      --field-color: #1f1f1f;
-      --field-border: #d0d0d0;
-      --placeholder-color: #7b7b7b;
-      --footer-bg: #111111;
-      --footer-text: #ffffff;
-      --hero-panel-bg: rgba(0, 0, 0, 0.18);
-      --hero-panel-shadow: rgba(0, 0, 0, 0.24);
-      --hero-fade-1: rgba(12, 12, 12, 0.46);
-      --hero-fade-2: rgba(12, 12, 12, 0.42);
-      --hero-fade-3: rgba(12, 12, 12, 0.18);
-      --hero-fade-4: rgba(255, 255, 255, 0.18);
-      --hero-fade-5: rgba(255, 255, 255, 0.72);
-      --hero-fade-6: #ffffff;
-      --hero-glow: rgba(255, 255, 255, 0.08);
+      --field-border: #d9d3ca;
+      --success: #0f8f58;
+      --error: #c0392b;
+      --warning: #9a6700;
     }
 
-    html[data-theme="dark"] {
-      color-scheme: dark;
-      --page-bg: #0f1013;
-      --text-color: #f3f4f6;
-      --menu-icon-bg: rgba(14, 15, 18, 0.82);
-      --menu-icon-color: #ffffff;
-      --nav-bg: rgba(8, 8, 10, 0.95);
-      --nav-link-color: #ffffff;
-      --nav-border: rgba(255, 255, 255, 0.08);
-      --nav-muted: rgba(255, 255, 255, 0.62);
-      --toggle-bg: rgba(15, 16, 19, 0.9);
-      --toggle-color: #f5f5f5;
-      --toggle-border: rgba(255, 255, 255, 0.12);
-      --card-bg: #17191d;
-      --card-text: #f3f4f6;
-      --card-shadow: rgba(0, 0, 0, 0.35);
-      --field-bg: #111318;
-      --field-color: #f3f4f6;
-      --field-border: #31343b;
-      --placeholder-color: #9ca3af;
-      --footer-bg: #090a0c;
-      --footer-text: #ffffff;
-      --hero-panel-bg: rgba(6, 7, 10, 0.34);
-      --hero-panel-shadow: rgba(0, 0, 0, 0.42);
-      --hero-fade-1: rgba(10, 10, 10, 0.58);
-      --hero-fade-2: rgba(10, 10, 10, 0.48);
-      --hero-fade-3: rgba(10, 10, 10, 0.24);
-      --hero-fade-4: rgba(15, 16, 19, 0.16);
-      --hero-fade-5: rgba(15, 16, 19, 0.72);
-      --hero-fade-6: #0f1013;
-      --hero-glow: rgba(255, 255, 255, 0.04);
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1013;
+        --panel: rgba(22, 24, 29, 0.9);
+        --panel-strong: #17191d;
+        --text: #f3f4f6;
+        --muted: #a8afb8;
+        --border: rgba(255, 255, 255, 0.09);
+        --shadow: rgba(0, 0, 0, 0.38);
+        --field-bg: #101217;
+        --field-border: #2c3038;
+      }
     }
 
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
       font-family: Arial, sans-serif;
     }
 
     body {
-      background: var(--page-bg);
-      color: var(--text-color);
-      transition: background-color 0.35s ease, color 0.35s ease;
-    }
-
-    .menu-icon,
-    .theme-toggle,
-    nav,
-    .card,
-    footer,
-    form input,
-    form textarea,
-    .hero-content {
-      transition:
-        background-color 0.35s ease,
-        color 0.35s ease,
-        border-color 0.35s ease,
-        box-shadow 0.35s ease,
-        transform 0.2s ease;
-    }
-
-    .menu-icon {
-      position: fixed;
-      top: 15px;
-      left: 15px;
-      font-size: 30px;
-      cursor: pointer;
-      z-index: 2000;
-      background: var(--menu-icon-bg);
-      color: var(--menu-icon-color);
-      padding: 6px 12px;
-      border-radius: 8px;
-      backdrop-filter: blur(8px);
-    }
-
-    .theme-toggle {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      z-index: 2000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      min-width: 130px;
-      padding: 10px 16px;
-      border: 1px solid var(--toggle-border);
-      border-radius: 999px;
-      background: var(--toggle-bg);
-      color: var(--toggle-color);
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
-      backdrop-filter: blur(12px);
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: -260px;
-      width: 250px;
-      height: 100vh;
-      background: var(--nav-bg);
-      display: flex;
-      flex-direction: column;
-      padding-top: 80px;
-      transition: left 0.3s ease, background-color 0.35s ease;
-      z-index: 1500;
-      backdrop-filter: blur(12px);
-    }
-
-    nav.open {
-      left: 0;
-    }
-
-    @media (hover: hover) {
-      .menu-icon:hover ~ nav,
-      nav:hover {
-        left: 0;
-      }
-    }
-
-    nav a {
-      color: var(--nav-link-color);
-      padding: 15px 20px;
-      text-decoration: none;
-      font-weight: bold;
-      border-bottom: 1px solid var(--nav-border);
-    }
-
-    nav a:hover {
-      background: var(--btn-bg);
-    }
-
-    .nav-divider {
-      margin: 22px 20px 16px;
-      border-top: 1px solid var(--nav-border);
-    }
-
-    .notify-toggle {
-      margin: 0 14px;
-      padding: 14px 14px 12px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--nav-link-color);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      cursor: pointer;
-      text-align: left;
-      backdrop-filter: blur(10px);
-    }
-
-    .notify-toggle:hover {
-      background: rgba(255, 255, 255, 0.12);
-    }
-
-    .notify-copy {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .notify-title {
-      font-size: 15px;
-      font-weight: bold;
-    }
-
-    .notify-status {
-      color: var(--nav-muted);
-      font-size: 13px;
-    }
-
-    .notify-switch {
-      position: relative;
-      width: 48px;
-      height: 28px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.2);
-      flex: 0 0 auto;
-    }
-
-    .notify-switch::after {
-      content: "";
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #ffffff;
-      transition: transform 0.25s ease, background-color 0.25s ease;
-    }
-
-    .notify-toggle[data-state="on"] .notify-switch {
-      background: var(--btn-bg);
-    }
-
-    .notify-toggle[data-state="on"] .notify-switch::after {
-      transform: translateX(20px);
-    }
-
-    .notify-toggle[disabled] {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .notify-hint {
-      margin: 12px 20px 0;
-      color: var(--nav-muted);
-      font-size: 12px;
-      line-height: 1.45;
-    }
-
-    header {
-      position: relative;
       min-height: 100vh;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 110px 20px 60px;
-      overflow: hidden;
-      isolation: isolate;
-    }
-
-    header::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: url("https://www.gasthof-winkler.de/images/joomlaplates/festsaal.jpg") center/cover;
-      transform: scale(1.08);
-      filter: blur(2px);
-      z-index: -2;
-    }
-
-    header::after {
-      content: "";
-      position: absolute;
-      inset: 0;
       background:
-        linear-gradient(
-          to bottom,
-          var(--hero-fade-1) 0%,
-          var(--hero-fade-2) 48%,
-          var(--hero-fade-3) 68%,
-          var(--hero-fade-4) 82%,
-          var(--hero-fade-5) 92%,
-          var(--hero-fade-6) 100%
-        ),
-        radial-gradient(circle at center, var(--hero-glow), transparent 55%);
-      z-index: -1;
-      transition: background 0.35s ease;
+        radial-gradient(circle at top, rgba(255, 77, 77, 0.14), transparent 30%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.08)),
+        var(--bg);
+      color: var(--text);
+      padding: 28px 16px;
     }
 
-    .hero-content {
-      width: min(92vw, 760px);
-      padding: 36px 28px;
+    .shell {
+      width: min(100%, 980px);
+      margin: 0 auto;
+    }
+
+    .gate-panel,
+    .admin-panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
       border-radius: 28px;
-      background: var(--hero-panel-bg);
-      backdrop-filter: blur(4px);
-      box-shadow: 0 24px 60px var(--hero-panel-shadow);
+      box-shadow: 0 28px 60px var(--shadow);
+      backdrop-filter: blur(16px);
     }
 
-    header h1 {
-      font-size: 60px;
-      margin-bottom: 14px;
-      letter-spacing: 0.02em;
-      text-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
-    }
-
-    header p {
-      font-size: 20px;
-      margin-bottom: 24px;
-      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
-    }
-
-    .btn {
-      background: var(--btn-bg);
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      cursor: pointer;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-
-    .btn:hover,
-    .theme-toggle:hover {
-      background: var(--btn-bg-hover);
-      color: white;
-    }
-
-    section {
-      padding: 60px 20px;
+    .gate-panel {
+      width: min(100%, 520px);
+      margin: 8vh auto 0;
+      padding: 30px;
       text-align: center;
     }
 
-    section h2 {
-      margin-bottom: 20px;
+    .brand {
+      width: min(280px, 70%);
+      display: block;
+      margin: 0 auto 22px;
+      border-radius: 18px;
     }
 
-    .menu {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: var(--card-bg);
-      color: var(--card-text);
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px var(--card-shadow);
-    }
-
-    .card:hover {
-      transform: scale(1.03);
-    }
-
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 10px;
+    h1 {
+      font-size: clamp(32px, 5vw, 46px);
       margin-bottom: 10px;
     }
 
-    footer {
-      background: var(--footer-bg);
-      color: var(--footer-text);
-      padding: 20px;
-      text-align: center;
+    h2 {
+      font-size: clamp(24px, 3vw, 34px);
+      margin-bottom: 10px;
     }
 
-    form input,
-    form textarea {
-      width: 80%;
-      padding: 10px;
-      margin: 10px;
-      border-radius: 6px;
+    p {
+      line-height: 1.55;
+    }
+
+    .lead {
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      text-align: left;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px 15px;
+      border-radius: 14px;
       border: 1px solid var(--field-border);
       background: var(--field-bg);
-      color: var(--field-color);
+      color: var(--text);
+      font-size: 15px;
     }
 
-    form input::placeholder,
-    form textarea::placeholder {
-      color: var(--placeholder-color);
+    textarea {
+      min-height: 180px;
+      resize: vertical;
     }
 
-    @media (hover: hover) and (pointer: fine) {
-      .theme-toggle {
-        display: inline-flex;
+    .btn,
+    .ghost-btn {
+      border: none;
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.18s ease, background-color 0.18s ease, opacity 0.18s ease;
+    }
+
+    .btn {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .ghost-btn {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .ghost-btn:hover,
+    .ghost-btn:focus-visible {
+      background: rgba(127, 127, 127, 0.09);
+    }
+
+    .status {
+      min-height: 22px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .status.success {
+      color: var(--success);
+    }
+
+    .status.error {
+      color: var(--error);
+    }
+
+    .status.warning {
+      color: var(--warning);
+    }
+
+    .admin-panel {
+      display: none;
+      padding: 26px;
+    }
+
+    .admin-panel.is-open {
+      display: block;
+    }
+
+    .admin-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .admin-kicker {
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 6px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .hint-box {
+      margin-top: 20px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255, 77, 77, 0.08);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 18px 12px;
       }
-    }
 
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 35px;
-      }
-
-      .hero-content {
-        width: min(95vw, 560px);
-        padding: 28px 18px;
+      .gate-panel,
+      .admin-panel {
         border-radius: 22px;
       }
 
-      header p {
-        font-size: 18px;
+      .gate-panel {
+        padding: 22px 18px;
       }
 
-      .menu {
+      .admin-panel {
+        padding: 18px;
+      }
+
+      .admin-topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .grid {
         grid-template-columns: 1fr;
-      }
-
-      form input,
-      form textarea {
-        width: 95%;
       }
     }
   </style>
 </head>
 
 <body>
+  <main class="shell">
+    <section class="gate-panel" id="gatePanel">
+      <img class="brand" src="../winkelwerlk.png" alt="Winkelwerk">
+      <h1>Admin-Zugang</h1>
+      <p class="lead">Diese Seite ist nur mit dem richtigen Code zug&auml;nglich.</p>
 
-<div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-<button class="theme-toggle" id="themeToggle" type="button" aria-label="Zum Dunkelmodus wechseln">Dunkelmodus</button>
+      <form id="gateForm">
+        <label>
+          Zugangscode
+          <input id="accessCode" type="password" placeholder="Code eingeben" autocomplete="current-password" required>
+        </label>
+        <button class="btn" type="submit">Adminbereich &ouml;ffnen</button>
+        <p class="status" id="gateStatus"></p>
+      </form>
+    </section>
 
-<nav id="sideMenu">
-  <a href="#home" onclick="toggleMenu()">Startseite</a>
-  <a href="#menu" onclick="toggleMenu()">Men&uuml;</a>
-  <a href="#about" onclick="toggleMenu()">&Uuml;ber uns</a>
-  <a href="#contact" onclick="toggleMenu()">Kontakt</a>
-  <div class="nav-divider"></div>
-  <button class="notify-toggle" id="notifyToggle" type="button" data-state="off" aria-pressed="false">
-    <span class="notify-copy">
-      <span class="notify-title">Push-Hinweise</span>
-      <span class="notify-status" id="notifyStatus">Aus</span>
-    </span>
-    <span class="notify-switch" aria-hidden="true"></span>
-  </button>
-  <p class="notify-hint" id="notifyHint">Aktiviert Browser-Benachrichtigungen f&uuml;r Winkelwerk.</p>
-</nav>
+    <section class="admin-panel" id="adminPanel">
+      <div class="admin-topbar">
+        <div>
+          <p class="admin-kicker">Winkelwerk Intern</p>
+          <h2>Nachrichten senden</h2>
+          <p class="lead">Von hier kannst du interne oder externe Nachrichten per E-Mail versenden.</p>
+        </div>
+        <button class="ghost-btn" id="lockAdmin" type="button">Abmelden</button>
+      </div>
 
-<header id="home">
-  <div class="hero-content">
-    <h1>Winkelwerk</h1>
-    <p>Dein Restaurant f&uuml;r besonderen Genuss</p>
-    <button class="btn">Jetzt reservieren</button>
-  </div>
-</header>
+      <form id="adminMessageForm">
+        <div class="grid">
+          <label>
+            Dein Name
+            <input type="text" name="admin_name" placeholder="z. B. Winkelwerk Team" required>
+          </label>
 
-<section id="menu">
-  <h2>Unser Men&uuml;</h2>
-  <div class="menu">
-    <div class="card">
-      <img src="https://oldworldgardenfarms.com/wp-content/uploads/2025/05/smashburger-735x735.jpg" alt="Smashburger">
-      <h3>Smashburger</h3>
-      <p>Frisch gesmashtes Rindfleisch-Patty vom Holzkohlegrill im Sesam-Bun.</p>
-    </div>
+          <label>
+            Antwort-E-Mail
+            <input type="email" name="reply_email" placeholder="name@beispiel.de" required>
+          </label>
+        </div>
 
-    <div class="card">
-      <img src="https://images.getrecipekit.com/20250721213330-Tandoori-Chicken-2.jpg?aspect_ratio=16:9&quality=90&" alt="Tandoori Chicken">
-      <h3>Tandoori Chicken</h3>
-      <p>Chicken mariniert in Joghurt und Gew&uuml;rzen, gegrillt im Tandoor.</p>
-    </div>
-  </div>
-</section>
+        <div class="grid">
+          <label>
+            Empf&auml;nger / Notiz
+            <input type="text" name="recipient" placeholder="z. B. Lieferant, Team, Kunde" required>
+          </label>
 
-<section id="about">
-  <h2>&Uuml;ber uns</h2>
-  <p>Winkelwerk steht f&uuml;r hochwertige Zutaten und kreative K&uuml;che.</p>
-</section>
+          <label>
+            Betreff
+            <input type="text" name="subject" placeholder="Betreff eingeben" required>
+          </label>
+        </div>
 
-<section id="contact">
-  <h2>Kontakt &amp; Reservierung</h2>
-  <form id="contact-form">
-    <input type="text" name="name" placeholder="Dein Name" required><br>
-    <input type="email" name="email" placeholder="Deine Email" required><br>
-    <textarea name="message" placeholder="Deine Nachricht" required></textarea><br>
-    <button type="submit" class="btn">Absenden</button>
-  </form>
-</section>
+        <label>
+          Nachricht
+          <textarea name="message_text" placeholder="Deine Nachricht..." required></textarea>
+        </label>
 
-<footer>
-  <p>&copy; 2026 Winkelwerk</p>
-</footer>
+        <button class="btn" type="submit">Nachricht senden</button>
+        <p class="status" id="messageStatus"></p>
+      </form>
 
-<script>
-  const root = document.documentElement;
-  const themeToggle = document.getElementById("themeToggle");
-  const themeMeta = document.querySelector('meta[name="theme-color"]');
-  const storageKey = "winkelwerk-desktop-theme";
-  const notificationKey = "winkelwerk-notifications-enabled";
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-  const notifyToggle = document.getElementById("notifyToggle");
-  const notifyStatus = document.getElementById("notifyStatus");
-  const notifyHint = document.getElementById("notifyHint");
+      <div class="hint-box">
+        Der Zugangsschutz dieser Seite l&auml;uft nur clientseitig. F&uuml;r echte Sicherheit auf einer Live-Domain braucht es sp&auml;ter einen Server-Login oder eine gesch&uuml;tzte Backend-Seite.
+      </div>
+    </section>
+  </main>
 
-  function isDesktopDevice() {
-    return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-  }
+  <script>
+    const ACCESS_CODE_HASH = "6209c99de88145d6dfd861fa1805e7e7cd1c7a1084d79f080f9dc5c8cf973a6e";
+    const SESSION_KEY = "winkelwerk-admin-unlocked";
+    const gateForm = document.getElementById("gateForm");
+    const gatePanel = document.getElementById("gatePanel");
+    const adminPanel = document.getElementById("adminPanel");
+    const gateStatus = document.getElementById("gateStatus");
+    const accessCode = document.getElementById("accessCode");
+    const lockAdmin = document.getElementById("lockAdmin");
+    const adminMessageForm = document.getElementById("adminMessageForm");
+    const messageStatus = document.getElementById("messageStatus");
 
-  function getSystemTheme() {
-    return prefersDark.matches ? "dark" : "light";
-  }
-
-  function applyTheme(theme) {
-    const nextModeLabel = theme === "dark" ? "Hellmodus" : "Dunkelmodus";
-
-    root.setAttribute("data-theme", theme);
-
-    if (themeMeta) {
-      themeMeta.setAttribute("content", theme === "dark" ? "#0f1013" : "#ffffff");
+    function setStatus(target, message, type) {
+      target.textContent = message;
+      target.className = "status" + (type ? " " + type : "");
     }
 
-    if (themeToggle) {
-      themeToggle.textContent = nextModeLabel;
-      themeToggle.setAttribute("aria-label", "Zum " + nextModeLabel + " wechseln");
-    }
-  }
-
-  function syncThemeWithDevice() {
-    if (isDesktopDevice()) {
-      const savedTheme = localStorage.getItem(storageKey);
-      applyTheme(savedTheme || getSystemTheme());
-      return;
+    async function sha256(value) {
+      const buffer = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
+      return Array.from(new Uint8Array(buffer))
+        .map((part) => part.toString(16).padStart(2, "0"))
+        .join("");
     }
 
-    applyTheme(getSystemTheme());
-  }
-
-  function toggleMenu() {
-    if (window.matchMedia("(hover: hover)").matches) {
-      return;
+    function openAdminPanel() {
+      sessionStorage.setItem(SESSION_KEY, "1");
+      gatePanel.classList.add("hidden");
+      adminPanel.classList.add("is-open");
     }
 
-    document.getElementById("sideMenu").classList.toggle("open");
-  }
-
-  function notificationsSupported() {
-    return typeof Notification !== "undefined";
-  }
-
-  function notificationsEnabled() {
-    return localStorage.getItem(notificationKey) === "on";
-  }
-
-  function updateNotificationUi() {
-    if (!notifyToggle || !notifyStatus || !notifyHint) {
-      return;
+    function lockAdminPanel() {
+      sessionStorage.removeItem(SESSION_KEY);
+      adminPanel.classList.remove("is-open");
+      gatePanel.classList.remove("hidden");
+      accessCode.value = "";
+      setStatus(gateStatus, "", "");
     }
 
-    if (!notificationsSupported()) {
-      notifyToggle.dataset.state = "off";
-      notifyToggle.disabled = true;
-      notifyToggle.setAttribute("aria-pressed", "false");
-      notifyStatus.textContent = "Nicht verfuegbar";
-      notifyHint.innerHTML = "Dieses Ger&auml;t oder dieser Browser unterst&uuml;tzt hier keine Benachrichtigungen.";
-      return;
+    if (sessionStorage.getItem(SESSION_KEY) === "1") {
+      openAdminPanel();
     }
 
-    const enabled = notificationsEnabled();
-    const permission = Notification.permission;
-
-    notifyToggle.disabled = false;
-    notifyToggle.dataset.state = enabled ? "on" : "off";
-    notifyToggle.setAttribute("aria-pressed", enabled ? "true" : "false");
-
-    if (enabled) {
-      notifyStatus.textContent = "An";
-      notifyHint.innerHTML = permission === "granted"
-        ? "Benachrichtigungen sind f&uuml;r Winkelwerk aktiv."
-        : "Bitte Benachrichtigungen im Browser erlauben.";
-      return;
-    }
-
-    notifyStatus.textContent = "Aus";
-    notifyHint.innerHTML = permission === "denied"
-      ? "Im Browser blockiert. Zum Aktivieren musst du die Berechtigung im Browser wieder erlauben."
-      : "Aktiviert Browser-Benachrichtigungen f&uuml;r Winkelwerk.";
-  }
-
-  async function enableNotifications() {
-    if (!notificationsSupported()) {
-      updateNotificationUi();
-      return;
-    }
-
-    let permission = Notification.permission;
-
-    if (permission !== "granted") {
-      permission = await Notification.requestPermission();
-    }
-
-    if (permission === "granted") {
-      localStorage.setItem(notificationKey, "on");
-      updateNotificationUi();
+    gateForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      setStatus(gateStatus, "Code wird gepr&uuml;ft ...", "");
 
       try {
-        new Notification("Winkelwerk", {
-          body: "Benachrichtigungen sind jetzt aktiviert.",
-          icon: "apple-touch-icon.png"
-        });
+        const submittedHash = await sha256(accessCode.value.trim());
+
+        if (submittedHash === ACCESS_CODE_HASH) {
+          setStatus(gateStatus, "Zugang gew&auml;hrt.", "success");
+          openAdminPanel();
+          return;
+        }
+
+        setStatus(gateStatus, "Falscher Code.", "error");
       } catch (error) {
         console.log(error);
+        setStatus(gateStatus, "Der Code konnte gerade nicht gepr&uuml;ft werden.", "error");
       }
-
-      return;
-    }
-
-    localStorage.setItem(notificationKey, "off");
-    updateNotificationUi();
-  }
-
-  function disableNotifications() {
-    localStorage.setItem(notificationKey, "off");
-    updateNotificationUi();
-  }
-
-  themeToggle.addEventListener("click", function () {
-    const nextTheme = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    localStorage.setItem(storageKey, nextTheme);
-    applyTheme(nextTheme);
-  });
-
-  notifyToggle.addEventListener("click", function () {
-    if (notificationsEnabled()) {
-      disableNotifications();
-      return;
-    }
-
-    enableNotifications();
-  });
-
-  function handleSystemThemeChange() {
-    if (!isDesktopDevice() || !localStorage.getItem(storageKey)) {
-      applyTheme(getSystemTheme());
-    }
-  }
-
-  if (typeof prefersDark.addEventListener === "function") {
-    prefersDark.addEventListener("change", handleSystemThemeChange);
-  } else if (typeof prefersDark.addListener === "function") {
-    prefersDark.addListener(handleSystemThemeChange);
-  }
-
-  window.addEventListener("resize", syncThemeWithDevice);
-  syncThemeWithDevice();
-  updateNotificationUi();
-
-  document.getElementById("contact-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    emailjs.sendForm(
-      "service_1mlrs3j",
-      "template_qebzqvw",
-      this
-    ).then(() => {
-      alert("Nachricht gesendet");
-      this.reset();
-    }, (error) => {
-      alert("Fehler beim Senden");
-      console.log(error);
     });
-  });
-</script>
 
+    lockAdmin.addEventListener("click", function () {
+      lockAdminPanel();
+    });
+
+    adminMessageForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      setStatus(messageStatus, "Nachricht wird gesendet ...", "");
+
+      const formData = new FormData(adminMessageForm);
+      const adminName = formData.get("admin_name");
+      const replyEmail = formData.get("reply_email");
+      const recipient = formData.get("recipient");
+      const subject = formData.get("subject");
+      const messageText = formData.get("message_text");
+
+      emailjs.send("service_1mlrs3j", "template_qebzqvw", {
+        name: "Admin: " + adminName,
+        email: replyEmail,
+        message:
+          "Empfaenger: " + recipient + "\n" +
+          "Betreff: " + subject + "\n\n" +
+          messageText
+      }).then(function () {
+        setStatus(messageStatus, "Nachricht erfolgreich gesendet.", "success");
+        adminMessageForm.reset();
+      }).catch(function (error) {
+        console.log(error);
+        setStatus(messageStatus, "Senden fehlgeschlagen.", "error");
+      });
+    });
+  </script>
 </body>
 </html>
